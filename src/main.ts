@@ -1,3 +1,5 @@
+// enableProdMode, check if the current all is executed in browser
+// for development or prodiuction
 import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
