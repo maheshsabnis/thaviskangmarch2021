@@ -1,3 +1,5 @@
+import { DataTableComponent } from './directives/componentdirective/datatabledirective/app.datattable.component.directive';
+import { ProductComponent } from './component/productcomponent/app.product.component';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 // FormsModule used for Two-Way binding to execute ngModel directive
@@ -7,13 +9,14 @@ import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProductComponent, DataTableComponent
   ],
   imports: [
     BrowserModule, FormsModule,
     AppRoutingModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [ProductComponent]
 })
 export class AppModule { }

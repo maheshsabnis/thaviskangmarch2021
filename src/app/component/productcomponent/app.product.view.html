@@ -1,0 +1,95 @@
+<h2>The Product Component</h2>
+
+<table class="table table-bordered table-striped">
+  <tbody>
+    <tr>
+      <td>
+        <div class="container">
+          <div class="form-group">
+              <label>Product Row Id</label>
+              <input type="text" class="form-control" [(ngModel)]="product.ProductRowId">
+          </div>
+          <div class="form-group">
+            <label>Product  Id</label>
+            <input type="text" class="form-control" [(ngModel)]="product.ProductId">
+          </div>
+          <div class="form-group">
+            <label>Product Name</label>
+            <input type="text" class="form-control" [(ngModel)]="product.ProductName">
+          </div>
+          <div class="form-group">
+            <label>Category Name</label>
+            <select  class="form-control" [(ngModel)]="product.CategoryName">
+              <option *ngFor="let cat of categories" value="{{cat}}">{{cat}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Manufacturers</label>
+            <select  class="form-control" [(ngModel)]="product.Manufacturer">
+              <option *ngFor="let man of manufacturers" value="{{man}}">{{man}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Description</label>
+            <input type="text" class="form-control" [(ngModel)]="product.Description">
+          </div>
+          <div class="form-group">
+            <label>Base Price</label>
+            <input type="text" class="form-control" [(ngModel)]="product.BasePrice">
+          </div>
+          <div class="form-group">
+             <input type="button" value="Save" class="btn btn-success" (click)="save()">
+             <input type="button" value="Clear" class="btn btn-warning" (click)="clear()">
+          </div>
+        </div>
+      </td>
+      <td>
+        <!-- <table class="table table-bordered table-striped">
+           <thead>
+             <tr>
+               <th>Product Row Id</th>
+               <th>Product Id</th>
+               <th>Product Name</th>
+               <th>Category Name</th>
+               <th>Manufacturer</th>
+               <th>Description</th>
+               <th>Base Price</th>
+             </tr>
+           </thead>
+           <tbody>
+             <tr *ngFor="let prd of products"
+              (click)="getSelectedProduct(prd)">
+                <td>{{prd.ProductRowId}}</td>
+                <td>{{prd.ProductId}}</td>
+                <td>{{prd.ProductName}}</td>
+                <td>{{prd.CategoryName}}</td>
+                <td>{{prd.Manufacturer}}</td>
+                <td>{{prd.Description}}</td>
+                <td>{{prd.BasePrice}}</td>
+             </tr>
+           </tbody>
+        </table> -->
+        <h3>Table Generated Dynaically</h3>
+        <!-- <table class="table table-bordered table-striped">
+           <thead>
+              <tr>
+                <th *ngFor="let header of coloumnHeaders">{{header}}</th>
+              </tr>
+           </thead>
+           <tbody>
+             <tr *ngFor="let prd of products" (click)="getSelectedProduct(prd)">
+               <td *ngFor="let header of coloumnHeaders">
+                  {{prd[header]}}
+               </td>
+             </tr>
+           </tbody>
+        </table> -->
+        <app-datatable-component [DataSource]="products"
+         (selectRow)="onSelectedProduct($event)"></app-datatable-component>
+        <br>
+        <app-datatable-component [DataSource]="depts"></app-datatable-component>
+
+      </td>
+    </tr>
+  </tbody>
+</table>

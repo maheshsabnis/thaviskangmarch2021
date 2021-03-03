@@ -1,0 +1,15 @@
+<h6>Table Component Directive</h6>
+<table class="table table-bordered table-striped">
+  <thead>
+     <tr>
+       <th *ngFor="let header of columnHeaders">{{header}}</th>
+     </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let row of DataSource" (click)="onSelectRow(row)">
+      <td *ngFor="let header of columnHeaders">
+         {{row[header]}}
+      </td>
+    </tr>
+  </tbody>
+</table>
