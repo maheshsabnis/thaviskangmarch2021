@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
 import { Logic } from "./../../models/app.productinfo.logic";
 import { ProductInfo } from "./../../models/app.productinfo.model";
 import { Categories,Manufacturers } from "./../../models/app.constants";
@@ -11,7 +11,7 @@ import { Categories,Manufacturers } from "./../../models/app.constants";
   selector: 'app-product-component',
   templateUrl: 'app.product.view.html'
 })
-export class ProductComponent implements OnInit {
+export class ProductComponent implements OnInit, OnChanges {
   product:ProductInfo;
   products: Array<ProductInfo>;
   private logic: Logic;
@@ -29,6 +29,13 @@ export class ProductComponent implements OnInit {
     this.depts.push({id:10,name:'IT'});
     this.depts.push({id:20,name:'HRD'});
     console.log('Constructor called');
+  }
+
+  // the method will be executed for each change that takes place on the UI
+  // for the data-bpund property. These changes will be received by the
+  // component and then component will decide if the UI changes are needed
+  ngOnChanges():void {
+      console.log(`Value is changed`);
   }
 
   // 1. write the time-consuming logic which we cannot write in constructor

@@ -1,45 +1,67 @@
-<h2>The Product Component</h2>
+<h2>The Product Reactive Component</h2>
 
 <table class="table table-bordered table-striped">
   <tbody>
     <tr>
       <td>
-        <form>
+        <!--Bind the [formGroup] directive-->
+        <form [formGroup]="frmgpProduct" (ngSubmit)="save()">
         <div class="container">
           <div class="form-group">
               <label>Product Row Id</label>
-              <input type="text" class="form-control" [(ngModel)]="product.ProductRowId">
+              <!--bind the 'key' of the FormGroup with 'formControlName'-->
+              <input type="text" class="form-control" formControlName="ProductRowId">
+              <!--Evaluate validations-->
+              <!--Check if the eleemnt is chnaged (dirty) and value is not valid or invalid-->
+              <!-- The <FormGroup>.controls.<formControlName>.dirty, to check if element is changed
+                The !<FormGroup>.controls.<formControlName>.valid -->
+              <div class="alert alert-danger"
+              *ngIf="frmgpProduct.controls.ProductRowId.dirty && !frmgpProduct.controls.ProductRowId.valid">
+                 <!-- Evaluate individual validators
+                  <FormGroup>.controls.<formControlName>.errors.<validator>
+                  -->
+
+                  <p *ngIf="frmgpProduct.controls.ProductRowId.errors?.required">Product Row Id is Required</p>
+                  <p *ngIf="frmgpProduct.controls.ProductRowId.errors?.minlength">Product Row Id must be 4 digits minimum</p>
+                  <p *ngIf="frmgpProduct.controls.ProductRowId.errors?.maxlength">Product Row Id can be 8 digts maximum</p>
+                  <p *ngIf="frmgpProduct.controls.ProductRowId.errors?.pattern">Product Row Id must be numeirc</p>
+                  <p *ngIf="!frmgpProduct.controls.ProductRowId.errors?.even">
+                    The Product Row Id must be even
+                  </p>
+
+            </div>
           </div>
           <div class="form-group">
             <label>Product  Id</label>
-            <input type="text" class="form-control" [(ngModel)]="product.ProductId">
+            <input type="text" class="form-control" formControlName="ProductId"  >
           </div>
           <div class="form-group">
             <label>Product Name</label>
-            <input type="text" class="form-control" [(ngModel)]="product.ProductName">
+            <input type="text" class="form-control" formControlName="ProductName"   >
           </div>
           <div class="form-group">
             <label>Category Name</label>
-            <select  class="form-control" [(ngModel)]="product.CategoryName">
+            <select  class="form-control" formControlName="CategoryName"   >
               <option *ngFor="let cat of categories" value="{{cat}}">{{cat}}</option>
             </select>
           </div>
           <div class="form-group">
             <label>Manufacturers</label>
-            <select  class="form-control" [(ngModel)]="product.Manufacturer">
+            <select  class="form-control" formControlName="Manufacturer"  >
               <option *ngFor="let man of manufacturers" value="{{man}}">{{man}}</option>
             </select>
           </div>
           <div class="form-group">
             <label>Description</label>
-            <input type="text" class="form-control" [(ngModel)]="product.Description">
+            <input type="text" class="form-control" formControlName="Description"  >
           </div>
           <div class="form-group">
             <label>Base Price</label>
-            <input type="text" class="form-control" [(ngModel)]="product.BasePrice">
+            <input type="text" class="form-control" formControlName="BasePrice"   >
           </div>
           <div class="form-group">
-             <input type="button" value="Save" class="btn btn-success" (click)="save()">
+            <!-- Disable the submit button -->
+             <input type="submit" value="Save" [disabled]="!frmgpProduct.valid" class="btn btn-success" >
              <input type="button" value="Clear" class="btn btn-warning" (click)="clear()">
           </div>
         </div>
