@@ -11,6 +11,9 @@
    5. Write a custom validator that will make sure that the ProductId is not repeated 
 3. Replace a select element by creating reusable custom component e.g. DropDownComponent that will have be used in 'ReactiveForms'. This component will have  DataList as an Input property to accept array from parent and will emit the selected data to parent component using the event.  (Mandatory)
 4. Create a Custom-Component Diretive that will show all Validation Errors at the botton of the page (optional)
+5. Create acustom directive, that will be executed on 'change' / 'keyup' / 'blur' event of the Input element in such a way that, if the input element is used for accepting 'unique-values' then the logic of the diretive will verify that the value entered into the input element is not repeated.  
+6. Modify the Data-Table Component as a CUSTOM HTML Element for following operations
+   1. When the Column Header is clicked, the table must show data by sorted order and again when it is clicked it shpuld be in reverse order by values presnt in that column 
 
 
 

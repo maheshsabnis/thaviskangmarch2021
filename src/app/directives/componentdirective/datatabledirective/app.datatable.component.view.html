@@ -1,4 +1,21 @@
 <h6>Table Component Directive</h6>
+
+<table class="table table-bordered table-striped">
+  <tbody>
+    <tr>
+      <td>
+        <input type="radio" name="r" (click)="color='red'">Red
+      </td>
+      <td>
+        <input type="radio" name="r" (click)="color='green'">Green
+      </td>
+      <td>
+        <input type="radio" name="r" (click)="color='yellow'">Yellow
+      </td>
+    </tr>
+  </tbody>
+</table>
+<hr>
 <table class="table table-bordered table-striped">
   <thead>
      <tr>
@@ -6,7 +23,8 @@
      </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let row of DataSource" (click)="onSelectRow(row)">
+    <tr *ngFor="let row of DataSource" (click)="onSelectRow(row)"
+     [setColor]="color">
       <td *ngFor="let header of columnHeaders">
          {{row[header]}}
       </td>

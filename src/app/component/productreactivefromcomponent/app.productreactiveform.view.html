@@ -7,7 +7,7 @@
         <!--Bind the [formGroup] directive-->
         <form [formGroup]="frmgpProduct" (ngSubmit)="save()">
         <div class="container">
-          <div class="form-group">
+          <div class="form-group" [setColor]="'black'">
               <label>Product Row Id</label>
               <!--bind the 'key' of the FormGroup with 'formControlName'-->
               <input type="text" class="form-control" formControlName="ProductRowId">

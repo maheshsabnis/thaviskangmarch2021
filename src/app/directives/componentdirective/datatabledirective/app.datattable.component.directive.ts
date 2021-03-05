@@ -7,6 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class DataTableComponent implements OnInit {
   private _DataSource:Array<any>;
   columnHeaders:Array<string>;
+  color:string;
 
   // EventEmitter<any>, used to emit an event from component
   // <T> is a generic parameter that represent 'event arguments'
@@ -20,6 +21,7 @@ export class DataTableComponent implements OnInit {
     this._DataSource = new Array<any>();
     this.columnHeaders = new Array<string>();
     this.selectRow = new EventEmitter<any>();
+    this.color='';
   }
 
   ngOnInit(): void {
