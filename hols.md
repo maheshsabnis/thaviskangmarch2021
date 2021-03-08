@@ -14,6 +14,15 @@
 5. Create acustom directive, that will be executed on 'change' / 'keyup' / 'blur' event of the Input element in such a way that, if the input element is used for accepting 'unique-values' then the logic of the diretive will verify that the value entered into the input element is not repeated.  
 6. Modify the Data-Table Component as a CUSTOM HTML Element for following operations
    1. When the Column Header is clicked, the table must show data by sorted order and again when it is clicked it shpuld be in reverse order by values presnt in that column 
+7. Create a SEARCH COMPONENT that will have a textbox. This textbox will accept a search string (Offline Hands-on)
+   1. The Page will have following 3 Components
+      1. Search Component
+      2. ProductCoponent
+         1. List of Products
+      3. OrdereComponent
+         1. List of Orders for Products
+   2. When a Product Name Or Category NAmes is exered in TextBox of the SearchComponent, the ProductCompoennt  will list only those Products belong to the category or will show only the Product of various  manufacturesr and the OrderComponent will list only those order for the displayed Products in ProductComponent  
+8. Modify the Product Reactive Form for Performing CRUD operations using Angular Service with HTTP Calls (Immediate)
 
 
 

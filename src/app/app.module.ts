@@ -1,3 +1,10 @@
+import { HttpServiceComponent } from './component/httpservicecomponent/app.httpservice.component';
+import { ReceiverComponent } from './component/communicationcomponents/app.receivefr.component';
+import { SenderComponent } from './component/communicationcomponents/app.sender.component';
+import { DisplayComponent } from './sharelib/component/app.display.component';
+import { ShareLibModule } from './sharelib/app.share.module';
+import { UtilityServiceComponent } from './component/utilityservicecomponent/app.utilityservice.component';
+import { UtilityService } from './services/app.utility.service';
 import { ElementConsumerComponent } from './component/elementconsumer/app.elementconsumer.component';
 import { ListElementComponent } from './elements/app.list.element';
 import { ProductReactiveFormComponent } from './component/productreactivefromcomponent/app.productreactiveform.component';
@@ -11,6 +18,7 @@ import { ProductComponent } from './component/productcomponent/app.product.compo
 // load, render and use the custom HTML element (form angular or from third party apps)
 import { NgModule, Injector, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from "@angular/common/http";
 // FormsModule used for Two-Way binding to execute ngModel directive
 // ReactiveFormsModule, the module that provides an execution for Angular Reactive form
 // and also provides resolution for following objects
@@ -36,11 +44,15 @@ import { createCustomElement } from "@angular/elements";
     LifecycleParentComponent, LifecycleChildComponent,
     ProductReactiveFormComponent, ColorDirective,
     ListElementComponent,
-    ElementConsumerComponent
+    ElementConsumerComponent,
+    UtilityServiceComponent,
+    SenderComponent, ReceiverComponent,
+    HttpServiceComponent
   ],
   imports: [
-    BrowserModule, FormsModule,ReactiveFormsModule,
-    AppRoutingModule
+    BrowserModule, FormsModule,ReactiveFormsModule,HttpClientModule,
+    AppRoutingModule,
+    ShareLibModule
   ],
   // the NgModule can used custom elements and reder it
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -48,8 +60,10 @@ import { createCustomElement } from "@angular/elements";
   // in NgModule so that some of the components will be
   // exposed as custom HTML element
   entryComponents:[ListElementComponent],
-  providers: [],
-  bootstrap: [ElementConsumerComponent]
+  // register the service
+  // From Angular 2 to Angular 5
+ // providers: [UtilityService],
+  bootstrap: [HttpServiceComponent]
 })
 export class AppModule {
   constructor(private injector: Injector){
