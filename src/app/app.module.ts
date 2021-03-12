@@ -1,3 +1,4 @@
+import { LitElementConsumerComponent } from './component/LitElementConsumerComponent/app.litelementconsumer.component';
 import { HttpServiceComponent } from './component/httpservicecomponent/app.httpservice.component';
 import { ReceiverComponent } from './component/communicationcomponents/app.receivefr.component';
 import { SenderComponent } from './component/communicationcomponents/app.sender.component';
@@ -34,8 +35,16 @@ import { AppComponent } from './app.component';
 // impoprt the directive
 import { ColorDirective } from "./directives/customattributedirective/app.color.directive";
 
+
+// importing the LitElement file
+
+import './mylitelements/app.first.litElement';
+
 // tyhe method used to register the Component as Custom HTML Element
 import { createCustomElement } from "@angular/elements";
+
+
+
 
 @NgModule({
   declarations: [
@@ -47,7 +56,8 @@ import { createCustomElement } from "@angular/elements";
     ElementConsumerComponent,
     UtilityServiceComponent,
     SenderComponent, ReceiverComponent,
-    HttpServiceComponent
+    HttpServiceComponent,
+    LitElementConsumerComponent
   ],
   imports: [
     BrowserModule, FormsModule,ReactiveFormsModule,HttpClientModule,
@@ -55,6 +65,8 @@ import { createCustomElement } from "@angular/elements";
     ShareLibModule
   ],
   // the NgModule can used custom elements and reder it
+  // CUSTOM_ELEMENTS_SCHEMA, is alos used to manage
+  // lifecycle of the LitElements in Angular Apps
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   //  the entryComponent will create a seperate registry
   // in NgModule so that some of the components will be
@@ -63,7 +75,7 @@ import { createCustomElement } from "@angular/elements";
   // register the service
   // From Angular 2 to Angular 5
  // providers: [UtilityService],
-  bootstrap: [HttpServiceComponent]
+  bootstrap: [AppComponent]
 })
 export class AppModule {
   constructor(private injector: Injector){

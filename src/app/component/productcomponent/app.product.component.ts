@@ -20,6 +20,7 @@ export class ProductComponent implements OnInit, OnChanges {
   manufacturers = Manufacturers;
   coloumnHeaders:Array<string>;
   depts:Array<any>;
+  tax:number;
   constructor() {
     this.product = new ProductInfo(0,'','','','','',0);
     this.products = new Array<ProductInfo>();
@@ -29,6 +30,7 @@ export class ProductComponent implements OnInit, OnChanges {
     this.depts.push({id:10,name:'IT'});
     this.depts.push({id:20,name:'HRD'});
     console.log('Constructor called');
+    this.tax = 0;
   }
 
   // the method will be executed for each change that takes place on the UI
@@ -57,6 +59,7 @@ export class ProductComponent implements OnInit, OnChanges {
   }
   save():void {
     this.products = this.logic.addProduct(this.product);
+    this.tax = this.product.BasePrice * 0.02;
   }
   getSelectedProduct(prd:ProductInfo):void {
     // Object.assign(target, source)

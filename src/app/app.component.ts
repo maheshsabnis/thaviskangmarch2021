@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-
+import {  logMethod} from "./../customdecorator/app.custom.decorator";
 
 @Component({
   selector: 'app-root',
@@ -33,12 +33,13 @@ export class AppComponent {
     this.canShow = true;
   }
 
+  @logMethod()
   display():void {
      // alert('Button is clicked');
     this.message += 'The Event Binding!!';
     this.heros.pop();
   }
-
+  @logMethod()
   displayWithEventParameter(event:any):void {
 
     // event, an event raised on UI element
@@ -46,6 +47,13 @@ export class AppComponent {
     // event.target.value, is the 'value' attribute of HTML elemnt
     this.message += `The Event Binding!! ${event.target.value}`;
     this.heros.push('Iron Man');
+
+    this.add('Mahesh', 'Sabnis');
+  }
+
+  @logMethod()
+  add(s1:string, s2:string):void {
+    console.log(`${s1}  ${s2}`);
   }
 
   toggle():void {

@@ -1,25 +1,29 @@
-// This file is required by karma.conf.js and loads recursively all the .spec and framework files
+// define the test configuration so that the DOM map is generated
+// in memory and it will linked with jest using
+// jset-preset-angular
+// this will be an in-memory DOM that will be used to instantiate
+// and load the component's HTML template with its Databinding and events
 
-import 'zone.js/dist/zone-testing';
-import { getTestBed } from '@angular/core/testing';
-import {
-  BrowserDynamicTestingModule,
-  platformBrowserDynamicTesting
-} from '@angular/platform-browser-dynamic/testing';
+import 'jest-preset-angular';
 
-declare const require: {
-  context(path: string, deep?: boolean, filter?: RegExp): {
-    keys(): string[];
-    <T>(id: string): T;
-  };
-};
+// define a CSS property for window object in memory
+// this will be used as CSS selector for extrating DOM
+// element in test case e.g. dispatching event on element
 
-// First, initialize the Angular testing environment.
-getTestBed().initTestEnvironment(
-  BrowserDynamicTestingModule,
-  platformBrowserDynamicTesting()
-);
-// Then we find all the tests.
-const context = require.context('./', true, /\.spec\.ts$/);
-// And load the modules.
-context.keys().map(context);
+Object.defineProperty(window,'CSS', {value:null});
+// define a DOCType for setting the pointer for DOM in memory while testing
+Object.defineProperty(document, 'doctype', {
+  value: '!<<DOCTYPE html>>'
+}); 
+
+// define an iteration on DOM so that events can be dispatched
+// and changes can be monitored in memory
+
+Object.defineProperty(document.body.style, 'transform', {
+  value:()=>{
+    return {
+      enumerable:true, // monitor the DOM changed when any node is updated
+      configurable:true // allow the DOM changed for databinding and events 
+    }
+  }
+})
